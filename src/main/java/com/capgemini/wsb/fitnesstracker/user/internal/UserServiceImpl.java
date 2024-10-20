@@ -7,19 +7,21 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Slf4j
 class UserServiceImpl implements UserService, UserProvider {
 
     private final UserRepository userRepository;
+    UserServiceImpl(UserRepository userRepository){this.userRepository=userRepository;}
 
     @Override
     public User createUser(final User user) {
-        log.info("Creating User {}", user);
+        System.out.printf("Creating User %s", user);
         if (user.getId() != null) {
             throw new IllegalArgumentException("User has already DB ID, update is not permitted!");
         }
