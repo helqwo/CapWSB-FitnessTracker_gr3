@@ -12,7 +12,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.apache.commons.logging.Log;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,13 +43,13 @@ class InitialDataLoader {
     public void loadInitialData(ContextRefreshedEvent event) {
         verifyDependenciesAutowired();
 
-        log.info("Loading initial data to the database");
+        System.out.println("Loading initial data to the database");
 
         List<User> sampleUserList = generateSampleUsers();
         List<Training> sampleTrainingList = generateTrainingData(sampleUserList);
 
 
-        log.info("Finished loading initial data");
+        System.out.println("Finished loading initial data");
     }
 
     private User generateUser(String name, String lastName, int age) {

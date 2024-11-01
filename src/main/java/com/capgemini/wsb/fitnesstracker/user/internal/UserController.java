@@ -2,11 +2,13 @@ package com.capgemini.wsb.fitnesstracker.user.internal;
 
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 //import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @RestController
 @RequestMapping("/v1/users")
@@ -37,15 +39,56 @@ class UserController {
                 .map(userMapper::toSimpleDto)
                 .toList();
     }
+    @GetMapping("/{userId}")
+    public UserDto getUser(@PathVariable Long userId){
+        return userService.getUser(userId)
+                .map(userMapper::toDto)
+                .orElseThrow(()->new IllegalArgumentException("No user with this Id"));
+    }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public User addUser(@RequestBody UserDto userDto) throws InterruptedException {
 
-        // Demonstracja how to use @RequestBody
-        System.out.println("User with e-mail: " + userDto.email() + "passed to the request");
+        System.out.println("User with e-mail: " + userDto.email() + " " + "passed to the request");
 
-        // TODO: saveUser with Service and return User
+        userService.createUser(this.userMapper.toEntity(userDto));
+
         return null;
     }
 
-}
+   @DeleteMapping("/{userId}")
+   @ResponseStatus(HttpStatus.NO_CONTENT)
+   public void deleteUser(@PathVariable Long userId) {
+       userService.deleteUserById(userId);
+   }
+
+   @GetMapping("/email/{email}")
+    public List<UserEmailDto> getUserByEmail(@PathVariable String email){
+        return userService.searchUsersByEmailFragment(email)
+                .stream()
+                .toList();
+
+   }
+    @GetMapping("/older/{age}")
+    public List<User> findUsersOlderThan(@PathVariable int age) {
+        return userService.findUsersOlderThan(age);
+
+    }
+
+    @PutMapping("/{userId}")
+    public ResponseEntity<User> updateUserFirstName(
+            @PathVariable Long userId,
+            @RequestBody UserFirstNameUpdateDto userUpdateDto) {
+
+        Optional<User> updatedUser = userService.updateUserFirstName(userId, userUpdateDto);
+
+        if (updatedUser.isPresent()) {
+            return ResponseEntity.ok(updatedUser.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+
+    }}
+

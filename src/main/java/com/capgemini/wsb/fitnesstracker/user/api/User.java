@@ -1,5 +1,7 @@
 package com.capgemini.wsb.fitnesstracker.user.api;
 
+import com.capgemini.wsb.fitnesstracker.training.api.Training;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -8,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -32,6 +36,10 @@ public class User {
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore // Prevents circular reference during serialization
+    private List<Training> trainings = new ArrayList<>();
 
     public String getFirstName() {
         return firstName;
@@ -66,5 +74,8 @@ public class User {
         this.email = email;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName=firstName;
+    }
 }
 
