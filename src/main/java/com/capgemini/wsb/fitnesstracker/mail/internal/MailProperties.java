@@ -11,7 +11,7 @@ import org.springframework.mail.javamail.JavaMailSender;
  */
 @ConfigurationProperties(prefix = "mail")
 @Getter
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 class MailProperties {
 
     /**
@@ -19,4 +19,7 @@ class MailProperties {
      */
     private final String from;
 
+    MailProperties(String from) {
+        this.from = from;
+    }
 }
