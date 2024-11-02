@@ -2,12 +2,10 @@ package com.capgemini.wsb.fitnesstracker.user.api;
 
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,41 +23,33 @@ public class User {
     @Nullable
     private Long id;
 
+    @Setter
+    @Getter
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
+    @Getter
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @Getter
     @Column(name = "birthdate", nullable = false)
     private LocalDate birthdate;
 
+    @Getter
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Getter
+    @Setter
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore // Prevents circular reference during serialization
+    @JsonManagedReference
+//    @JsonIgnore
     private List<Training> trainings = new ArrayList<>();
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
 
     @Nullable
     public Long getId() {
         return id;
-    }
-
-    public LocalDate getBirthdate() {
-        return birthdate;
     }
 
     public User(
@@ -74,8 +64,5 @@ public class User {
         this.email = email;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName=firstName;
-    }
 }
 

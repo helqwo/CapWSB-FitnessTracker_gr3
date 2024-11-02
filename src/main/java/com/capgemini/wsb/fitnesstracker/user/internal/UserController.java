@@ -5,6 +5,7 @@ import com.capgemini.wsb.fitnesstracker.user.api.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
@@ -63,15 +64,16 @@ class UserController {
        userService.deleteUserById(userId);
    }
 
-   @GetMapping("/email/{email}")
-    public List<UserEmailDto> getUserByEmail(@PathVariable String email){
+    @GetMapping("/email/{email}")
+    public List<UserEmailDto> getUserByEmail(@PathVariable String email) {
         return userService.searchUsersByEmailFragment(email)
                 .stream()
                 .toList();
 
-   }
+
+    }
     @GetMapping("/older/{age}")
-    public List<User> findUsersOlderThan(@PathVariable int age) {
+    public List<User> findUsersOlderThan(@PathVariable LocalDate age) {
         return userService.findUsersOlderThan(age);
 
     }

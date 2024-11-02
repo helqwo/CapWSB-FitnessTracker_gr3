@@ -58,11 +58,8 @@ class UserServiceImpl implements UserService, UserProvider {
     public List<UserEmailDto> searchUsersByEmailFragment(String emailFragment) {
         return userRepository.findByEmailFragment(emailFragment);
     }
-    public List<User> findUsersOlderThan(int age) {
-        LocalDate currentDate = LocalDate.now();
-        LocalDate birthdateThreshold = currentDate.minusYears(age);
-
-        return userRepository.findOlderThan(birthdateThreshold);
+    public List<User> findUsersOlderThan(LocalDate birthdate) {
+        return userRepository.findOlderThan(birthdate);
     }
     @Override
     public List<User> findAllUsers() {
