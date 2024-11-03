@@ -11,6 +11,11 @@ import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * REST controller for managing user-related operations, including retrieval, creation,
+ * deletion, and update of user information.
+ */
+
 @RestController
 @RequestMapping("/v1/users")
 //@RequiredArgsConstructor

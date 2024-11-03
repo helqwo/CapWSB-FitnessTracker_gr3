@@ -14,6 +14,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service implementation for handling user-related business logic.
+ */
+
 @Service
 //@RequiredArgsConstructor
 @Slf4j

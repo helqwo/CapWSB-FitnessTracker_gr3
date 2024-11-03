@@ -11,6 +11,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Entity representing a user in the system.
+ */
+
 @Entity
 @Table(name = "users")
 @Getter
