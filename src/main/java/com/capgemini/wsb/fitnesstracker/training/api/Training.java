@@ -23,7 +23,7 @@ public class Training {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonBackReference
+//    @JsonBackReference
     private User user;
 
     @Column(name = "start_time", nullable = false)
