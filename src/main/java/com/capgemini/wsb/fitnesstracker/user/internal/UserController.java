@@ -66,11 +66,12 @@ class UserController {
    @DeleteMapping("/{userId}")
    @ResponseStatus(HttpStatus.NO_CONTENT)
    public void deleteUser(@PathVariable Long userId) {
-       userService.deleteUserById(userId);
+
+        userService.deleteUserById(userId);
    }
 
-    @GetMapping("/email/{email}")
-    public List<UserEmailDto> getUserByEmail(@PathVariable String email) {
+    @GetMapping("/email")
+    public List<UserEmailDto> getUserByEmail(@RequestParam String email) {
         return userService.searchUsersByEmailFragment(email)
                 .stream()
                 .toList();

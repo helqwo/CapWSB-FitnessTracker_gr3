@@ -8,6 +8,7 @@ public interface UserService {
 
     User createUser(User user);
     void deleteUserById(Long userId);
+    User getUserById(Long userId);
 
 }
 

@@ -3,6 +3,7 @@ package com.capgemini.wsb.fitnesstracker.user.internal;
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.training.internal.TrainingRepository;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
+import com.capgemini.wsb.fitnesstracker.user.api.UserNotFoundException;
 import com.capgemini.wsb.fitnesstracker.user.api.UserProvider;
 import com.capgemini.wsb.fitnesstracker.user.api.UserService;
 import lombok.RequiredArgsConstructor;
@@ -69,21 +70,12 @@ class UserServiceImpl implements UserService, UserProvider {
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
-  /*  public Optional<User>*/
-/*    updateUserFirstName(Long userId, UserFirstNameUpdateDto userUpdateDto) {
-        Optional<User> userOptional = userRepository.findById(userId);
 
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            // Update user's first name using the DTO provided
-            user.setFirstName(userUpdateDto.getFirstName()); // Correctly setting the first name
+    @Override
+    public User getUserById(Long userId) {
+        return userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+    }
 
-            // Save the updated user
-            return Optional.of(userRepository.save(user));
-        }
-
-        return Optional.empty(); // User not found
-    }*/
     public Optional<User> updateUserFirstName(Long userId, UserFirstNameUpdateDto userUpdateDto) {
         Optional<User> userOptional = userRepository.findById(userId);
 
