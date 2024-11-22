@@ -15,6 +15,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * REST controller that handles all HTTP requests related to training sessions.
+ * Provides endpoints for creating, retrieving, and updating training sessions.
+ * All training-related operations are backed by services like {@link TrainingService} and {@link UserService}.
+ */
 @RestController
 @RequestMapping("/v1/trainings")
 public class TrainingController {

@@ -7,6 +7,12 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+
+/**
+ * Represents a training session for a user.
+ * This entity stores details about a specific activity.
+ */
+
 @Entity
 @Table(name = "trainings")
 @Getter
