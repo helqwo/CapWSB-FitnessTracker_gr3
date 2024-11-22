@@ -1,8 +1,4 @@
 package com.capgemini.wsb.fitnesstracker.training.internal;
-
-import com.capgemini.wsb.fitnesstracker.user.api.User;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.annotation.Nullable;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,5 +14,5 @@ public class TrainingDto {
     private double distance;
     private double averageSpeed;
 
-}
 
+}

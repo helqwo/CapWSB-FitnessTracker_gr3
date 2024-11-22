@@ -4,7 +4,6 @@ import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingProvider;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingService;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
-import com.capgemini.wsb.fitnesstracker.user.api.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,10 +26,19 @@ public class TrainingServiceImpl implements TrainingProvider, TrainingService {
         throw new UnsupportedOperationException("Not finished yet");
     }
 
-    // metoda findAll() z JpaRepository zwraca nam wszystkie treningi z bazy
+    @Override
+    public Training createTraining(Training training) {
+        return trainingRepository.save(training);
+    }
+
     @Override
     public List<Training> findAllTrainings() {
         return trainingRepository.findAll();
+    }
+
+    @Override
+    public List<Training> findFinishedTrainingsAfter(LocalDateTime afterTime) {
+        return trainingRepository.findFinishedTrainingsAfter(afterTime);
     }
 
 }

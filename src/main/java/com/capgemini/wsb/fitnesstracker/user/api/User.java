@@ -24,8 +24,13 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Nullable
     private Long id;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
+    @JsonIgnore
+    private List<Training> trainings = new ArrayList<>();
 
     @Setter
     @Getter
@@ -44,17 +49,11 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Getter
-    @Setter
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-//    @JsonIgnore
-    private List<Training> trainings = new ArrayList<>();
-
     @Nullable
     public Long getId() {
         return id;
     }
+
 
     public User(
             final String firstName,

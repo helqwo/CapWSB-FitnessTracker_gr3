@@ -36,5 +36,53 @@ public class TrainingController {
         return ResponseEntity.ok(trainings);
     }
 
-}
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<Training>> getTrainingsByUser(@PathVariable Long userId) {
+        List<Training> trainings = trainingRepository.findByUserId(userId);
+        return ResponseEntity.ok(trainings);
+    }
+    @GetMapping("/finished/{afterDate}")
+    public ResponseEntity<List<Training>> getFinishedTrainingsAfter(@PathVariable String afterDate) {
+        LocalDate aDate = LocalDate.parse(afterDate);
+        LocalDateTime afterDateTime = aDate.atStartOfDay();
+        List<Training> trainings = trainingRepository.findFinishedTrainingsAfter(afterDateTime);
+        return ResponseEntity.ok(trainings);
+    }
+    @PostMapping
+    public ResponseEntity<Training> createTraining(@RequestBody TrainingDto trainingDto) {
+        User user = userService.getUserById(trainingDto.getUserId());
+        Training training = new Training(
+                user,
+                trainingDto.getStartTime(),
+                trainingDto.getEndTime(),
+                trainingDto.getActivityType(),
+                trainingDto.getDistance(),
+                trainingDto.getAverageSpeed());
 
+        Training createdTraining = trainingService.createTraining(training);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdTraining);
+    }
+    @GetMapping("/activityType")
+    public ResponseEntity<List<Training>> getTrainingsByActivityType(@RequestParam ActivityType activityType) {
+        System.out.println(activityType);
+        List<Training> trainings = trainingRepository.findByActivityType(activityType);
+        return ResponseEntity.ok(trainings);
+    }
+    @PutMapping("/{trainingId}")
+    public ResponseEntity<Training> updateTraining(@PathVariable Long trainingId, @RequestBody Training updatedTraining) {
+        Optional<Training> optionalTraining = trainingRepository.findById(trainingId);
+
+        if (optionalTraining.isPresent()) {
+            Training existingTraining = optionalTraining.get();
+
+            updatedTraining.setUser(existingTraining.getUser());
+
+            updatedTraining.setId(trainingId);
+
+            Training savedTraining = trainingRepository.save(updatedTraining);
+
+            return ResponseEntity.ok(savedTraining);
+        } else {
+            return ResponseEntity.notFound().build();
+        }}
+}
