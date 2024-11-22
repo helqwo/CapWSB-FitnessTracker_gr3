@@ -10,7 +10,7 @@ import java.util.Date;
  * Data Transfer Object (DTO) used for transferring training session data.
  * The class contains the necessary fields for representing a training session
  * and is used for creating or updating training records.
- *
+ * *
  * It includes the following attributes:
  * - userId, startTime, endTime, activityType, distance and averageSpeed.
  */
