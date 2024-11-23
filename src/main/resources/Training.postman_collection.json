@@ -1,115 +1,32 @@
 {
   "info": {
-    "_postman_id": "1676c3df-4669-4378-b8e0-b1455f6e97fe",
-    "name": "User",
+    "_postman_id": "e7afd89a-27b7-470a-be79-eab11e4d9a36",
+    "name": "Training",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "39368577"
   },
   "item": [
     {
-      "name": "localhost:8081/v1/users",
+      "name": "localhost:8081/v1/trainings",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "localhost:8081/v1/users",
+          "raw": "localhost:8081/v1/trainings",
           "host": [
             "localhost"
           ],
           "port": "8081",
           "path": [
             "v1",
-            "users"
+            "trainings"
           ]
         }
       },
       "response": []
     },
     {
-      "name": "localhost:8081/v1/users",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\"firstName\":\"Michalina\",\"lastName\":\"abc\",\"birthdate\":\"1990-01-01\",\"email\":\"nicole.kidman@abc.uk\"}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "localhost:8081/v1/users",
-          "host": [
-            "localhost"
-          ],
-          "port": "8081",
-          "path": [
-            "v1",
-            "users"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "localhost:8081/v1/users/5",
-      "request": {
-        "method": "DELETE",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "localhost:8081/v1/users/5",
-          "host": [
-            "localhost"
-          ],
-          "port": "8081",
-          "path": [
-            "v1",
-            "users",
-            "5"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "localhost:8081/v1/users/email?email=Grace.Anderson",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "localhost:8081/v1/users/email?email=Grace.Anderson",
-          "host": [
-            "localhost"
-          ],
-          "port": "8081",
-          "path": [
-            "v1",
-            "users",
-            "email"
-          ],
-          "query": [
-            {
-              "key": "email",
-              "value": "Grace.Anderson"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "localhost:8081/v1/users/older/2000-05-19",
+      "name": "localhost:8081/v1/trainings/1",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -126,29 +43,49 @@
           }
         },
         "url": {
-          "raw": "localhost:8081/v1/users/older/2000-05-19",
+          "raw": "localhost:8081/v1/trainings/1",
           "host": [
             "localhost"
           ],
           "port": "8081",
           "path": [
             "v1",
-            "users",
-            "older",
-            "2000-05-19"
+            "trainings",
+            "1"
           ]
         }
       },
       "response": []
     },
     {
-      "name": "localhost:8081/v1/users/9",
+      "name": "localhost:8081/v1/trainings/finished/2024-05-19",
       "request": {
-        "method": "PUT",
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8081/v1/trainings/finished/2024-05-19",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "v1",
+            "trainings",
+            "finished",
+            "2024-05-19"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "localhost:8081/v1/trainings",
+      "request": {
+        "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"firstName\": \"Marlena\"\n}",
+          "raw": " {\n        \"userId\": 1,\n        \"startTime\": \"2024-01-22T07:00:00.000+00:00\",\n        \"endTime\": \"2024-01-22T08:30:00.000+00:00\",\n        \"activityType\": \"SWIMMING\",\n        \"distance\": 666,\n        \"averageSpeed\": 666\n    }",
           "options": {
             "raw": {
               "language": "json"
@@ -156,15 +93,81 @@
           }
         },
         "url": {
-          "raw": "localhost:8081/v1/users/9",
+          "raw": "localhost:8081/v1/trainings",
           "host": [
             "localhost"
           ],
           "port": "8081",
           "path": [
             "v1",
-            "users",
-            "9"
+            "trainings"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "localhost:8081/v1/trainings/activityType?activityType=RUNNING",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8081/v1/trainings/activityType?activityType=RUNNING",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "v1",
+            "trainings",
+            "activityType"
+          ],
+          "query": [
+            {
+              "key": "activityType",
+              "value": "RUNNING"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "localhost:8081/v1/trainings/1",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n                \"userId\": \"1\",\n                \"startTime\": \"2022-04-11T10:00:00\",\n                \"endTime\": \"2022-04-11T11:00:00\",\n                \"activityType\": \"RUNNING\",\n                \"distance\": 666,\n                \"averageSpeed\": 6666\n                }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8081/v1/trainings/1",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "v1",
+            "trainings",
+            "1"
           ]
         }
       },
