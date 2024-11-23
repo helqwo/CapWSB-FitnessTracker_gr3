@@ -142,13 +142,13 @@
       "response": []
     },
     {
-      "name": "localhost:8081/v1/users/9",
+      "name": "localhost:8081/v1/users/6",
       "request": {
         "method": "PUT",
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"firstName\": \"Marlena\"\n}",
+          "raw": "{\n    \"firstName\": \"Mike\"\n\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -156,7 +156,7 @@
           }
         },
         "url": {
-          "raw": "localhost:8081/v1/users/9",
+          "raw": "localhost:8081/v1/users/6",
           "host": [
             "localhost"
           ],
@@ -164,7 +164,7 @@
           "path": [
             "v1",
             "users",
-            "9"
+            "6"
           ]
         }
       },
