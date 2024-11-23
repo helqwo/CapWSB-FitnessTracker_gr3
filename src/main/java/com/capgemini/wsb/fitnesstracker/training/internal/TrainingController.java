@@ -4,7 +4,6 @@ import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingProvider;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingService;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
-import com.capgemini.wsb.fitnesstracker.user.api.UserProvider;
 import com.capgemini.wsb.fitnesstracker.user.api.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +14,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * REST controller that handles all HTTP requests related to training sessions.
+ * Provides endpoints for creating, retrieving, and updating training sessions.
+ * All training-related operations are backed by services like {@link TrainingService} and {@link UserService}.
+ */
 @RestController
 @RequestMapping("/v1/trainings")
 public class TrainingController {
